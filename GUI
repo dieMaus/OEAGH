@@ -1,0 +1,21 @@
+from Tkinter import *
+
+raiz=Tk()
+var = IntVar()
+
+raiz.title("Kebab")
+
+R1 = Radiobutton(raiz, text="Exibicao", variable=var, value=1)
+R1.pack(anchor = W)
+
+R2 = Radiobutton(raiz, text="Listagem", variable=var, value=2)
+R2.pack(anchor = W)
+
+R3 = Radiobutton(raiz, text="Comparacao", variable=var, value=3)
+R3.pack(anchor = W)
+
+label = Label(raiz)
+label.config(text = "Escolha uma opcao acima")
+label.pack(anchor = S)
+
+raiz.mainloop()
