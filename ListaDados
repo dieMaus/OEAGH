@@ -1,0 +1,15 @@
+Esses serão os dados que coletaremos dos países e usaremos no programa:
+
+string Nome
+string Capital
+string Maior Cidade
+string Sigla de duas letras (usar no input)
+string sufixo de domínio na internet
+int Prefixo telefônico
+int População
+float Área
+string Moeda (nome)
+string Moeda (código de três letras)
+float IDH
+float GINI
+float PIB
