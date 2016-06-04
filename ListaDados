@@ -1,4 +1,4 @@
-Esses serão os dados que coletaremos dos países e usaremos no programa:
+Esses serão os dados brutos que coletaremos dos países e usaremos no programa:
 
 string Nome
 string Capital
@@ -13,3 +13,10 @@ string Moeda (código de três letras)
 float IDH
 float GINI
 float PIB
+
+-----
+O que podemos fazer de refinamento?
+
+*) verificar se a Capital é a Maior Cidade (strcmp)
+*) float Densidade populacional = População / Área
+*) float PIB por pessoa = PIB / População
