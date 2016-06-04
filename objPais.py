@@ -123,10 +123,6 @@ class Country:
 		print "\nHDI:", self.get_hdi()
 		
 		print "\nGini index:", self.get_gini()
-		
-		
-
-		
 
 ## TESTEZINHO BASICO
 
