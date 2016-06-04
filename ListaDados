@@ -1,6 +1,8 @@
 Esses serão os dados brutos que coletaremos dos países e usaremos no programa:
 
 string Nome
+imagem Bandeira
+imagem Mapa
 string Capital
 string Maior Cidade
 string Sigla de duas letras (usar no input)
