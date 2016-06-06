@@ -1,0 +1,15 @@
+#Algoritmo para a geração dos nomes dos mapas/bandeiras
+#Deve ser implementado no objeto País para relacionar cada instância com seu mapa/bandeira
+#Nota: só funciona para instâncias criadas em série (caso de 2 países com as 2 primeiras palavras do nome iguais)
+
+se palavrasnonome > 1:
+	se 2ª = 'and': deixa só o 1ª
+	senão: concatena com 2ª
+
+se nomeatual = nomeanterior:
+	concatena com 3ª
+
+nomeanterior <= nomeatual
+
+self.map <= concatena com 'Maps\'
+self.flag <= concatena com 'Flags\'
