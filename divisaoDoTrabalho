@@ -1,9 +1,10 @@
 Germano:
   Criar um objeto País, reunindo os dados que serão usados e criando os métodos (funções) relevantes
+  remover países irrelevantes(aqueles sem dados)
 
 Henrique:
-  найти противогаз
-  коммитировать что-нибудь
+  научиться использовать CSV-файл с питоном
+  pegar os dados em formato csv (então!?!?!?!)
 
 Lauren:
   Elaborar o GUI
@@ -11,5 +12,12 @@ Lauren:
 
 Não-alocado:
   bolar o formato de arquivos para guardar os dados
-  usar expressões regulares para o web scraping
+  usar expressões regulares para o web scraping(?!)
   criar uma árvore B para cada indicador
+  escolher de onde pegar os dados
+
+Etc:
+  chorar
+  убить всех враждебных
+  найти противогаз
+  коммитировать что-нибудь
