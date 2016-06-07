@@ -14,7 +14,7 @@ import pycountry
 import re
 
 t = list(pycountry.countries)
-nomenterior = ''
+nomeanterior = ''
 
 for country in t:
     nome = country.name
