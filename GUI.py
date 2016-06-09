@@ -1,8 +1,10 @@
 #improved GUI
 #Corrijam meu ingles, senpais.
+#Se quiserem rodar essa GUI, baixem o Pillow
 
-import Tkinter as tk
-from Tkinter import END, LEFT, RIGHT
+import tkinter as tk
+from tkinter import END, LEFT, RIGHT
+from PIL import Image
 
 LARGE_FONT = ("Verdana", 12)
 
@@ -61,16 +63,59 @@ class App(tk.Tk):
 
     def Compare(self, country1, country2):
         frame = tk.Toplevel(self)
-        label = tk.Label(frame, text="%s and %s" %(country1, country2))
-        label.pack()
+        label1 = tk.Label(frame, text="%s vs %s" %(country1, country2))
+        label1.grid(row=0, column=3)
+
+        #Bandeira do pais 1
+        im_temp = Image.open("C:/Users/Laure/OneDrive/Documentos/CPD/TrabalhoFinal/Flags/"+country1+".gif")
+        im_temp = im_temp.resize((175, 88), Image.ANTIALIAS)
+        im_temp.save("teste.gif", "gif")
+        
+        flag1 = tk.PhotoImage(file="teste.gif")
+        painel11 = tk.Label(frame, image = flag1)
+        painel11.image = flag1 #mantenha a referencia, mantenha a referencia, mantenha a refere...
+        painel11.grid(row=1, column=1)
+
+        #Mapa do pais 1
+        im_temp = Image.open("C:/Users/Laure/OneDrive/Documentos/CPD/TrabalhoFinal/Maps/"+country1+".gif")
+        im_temp = im_temp.resize((175, 88), Image.ANTIALIAS)
+        im_temp.save("teste.gif", "gif")
+        
+        map1 = tk.PhotoImage(file="teste.gif")
+        painel1 = tk.Label(frame, image = map1)
+        painel1.image = map1 #mantenha a referencia, mantenha a referencia, mantenha a refere...
+        painel1.grid(row=1, column=2)
+
+        #Bandeira do pais 2
+        im_temp = Image.open("C:/Users/Laure/OneDrive/Documentos/CPD/TrabalhoFinal/Flags/"+country2+".gif")
+        im_temp = im_temp.resize((175, 88), Image.ANTIALIAS)
+        im_temp.save("teste.gif", "gif")
+        
+        flag2 = tk.PhotoImage(file="teste.gif")
+        painel22 = tk.Label(frame, image = flag2)
+        painel22.image = flag2 #mantenha a referencia, mantenha a referencia, mantenha a refere...
+        painel22.grid(row=1, column=4)
+
+        #Mapa do pais 2
+        im_temp = Image.open("C:/Users/Laure/OneDrive/Documentos/CPD/TrabalhoFinal/Maps/"+country2+".gif")
+        im_temp = im_temp.resize((175, 88), Image.ANTIALIAS)
+        im_temp.save("teste.gif", "gif")
+        
+        map2 = tk.PhotoImage(file="teste.gif")
+        painel2 = tk.Label(frame, image = map2)
+        painel2.image = map2 #mantenha a referencia, mantenha a referencia, mantenha a refere...
+        painel2.grid(row=1, column=5)
+        
         S1 = tk.Scrollbar(frame)
-        T1 = tk.Text(frame, height=4, width=25)
-        S1.pack(pady=2, padx=2, side=LEFT)
-        T1.pack(pady=2, padx=2, side=LEFT)
+        T1 = tk.Text(frame, height=4, width=50)
+        S1.grid(pady=2, padx=2, row=2, column=0)
+        T1.grid(pady=2, padx=2, row=2, column=1, columnspan=2)
+        
         S2 = tk.Scrollbar(frame)
-        T2 = tk.Text(frame, height=4, width=25)
-        S2.pack(pady=2, padx=2, side=RIGHT)
-        T2.pack(pady=2, padx=2, side=RIGHT)
+        T2 = tk.Text(frame, height=4, width=50)
+        S2.grid(pady=2, padx=2, row=2, column=6)
+        T2.grid(pady=2, padx=2, row=2, column=4, columnspan=2)
+        
         S1.config(command=T1.yview)
         T1.config(yscrollcommand=S1.set)
         S2.config(command=T2.yview)
