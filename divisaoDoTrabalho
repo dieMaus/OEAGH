@@ -4,11 +4,12 @@ Germano:
 
 Henrique:
   научиться использовать CSV-файл с питоном
-  pegar os dados em formato csv (então!?!?!?!)
+  pegar os dados em formato csv (então!?!?!?!) #Pegar os dados em CSV e salvar num arq. bin. com o Pickle (se não o usar, ganha pontos)
 
 Lauren:
-  Elaborar o GUI
+  (OK)Elaborar o GUI
   (OK) Coletar as bandeiras e mapas(?) dos países
+  Implementar features (listagem, comparação e exibição)
 
 Não-alocado:
   bolar o formato de arquivos para guardar os dados
