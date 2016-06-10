@@ -21,6 +21,7 @@ class App(tk.Tk):
         container.grid_rowconfigure(0, weight=1)
         container.grid_columnconfigure(0, weight=1)
         
+        #Meus problemas começam aqui: não consigo usar esse dicionário em Compare
         dictio = {}
         t = list(pycountry.countries)
 
@@ -76,9 +77,27 @@ class App(tk.Tk):
         frame = tk.Toplevel(self)
         label1 = tk.Label(frame, text="%s vs %s" %(country1, country2))
         label1.grid(row=0, column=3)
+    
+        country1 = country1.lower()
+        country1 = unidecode(country1)
+
+        country2 = country2.lower()
+        country2 = unidecode(country2)
+        
+        #No fim, tenho que recriar o dicionário a cada nova pesquisa, ao invés de usar um só :/
+        dictio = {}
+        t = list(pycountry.countries)
+        for country in t:
+            name = country.name.lower()
+            name = unidecode(name)
+            iso = country.alpha3
+            dictio[name] = iso
+            
+        alpha1 = dictio[country1]
+        alpha2 = dictio[country2]
 
         #Bandeira do pais 1
-        im_temp = Image.open("C:/Users/Laure/OneDrive/Documentos/CPD/TrabalhoFinal/Flags/"+country1+".gif")
+        im_temp = Image.open("Flags/"+alpha1+".gif")
         im_temp = im_temp.resize((175, 88), Image.ANTIALIAS)
         im_temp.save("teste.gif", "gif")
         
@@ -88,7 +107,7 @@ class App(tk.Tk):
         painel11.grid(row=1, column=1)
 
         #Mapa do pais 1
-        im_temp = Image.open("C:/Users/Laure/OneDrive/Documentos/CPD/TrabalhoFinal/Maps/"+country1+".gif")
+        im_temp = Image.open("Maps/"+alpha1+".gif")
         im_temp = im_temp.resize((175, 88), Image.ANTIALIAS)
         im_temp.save("teste.gif", "gif")
         
@@ -98,7 +117,7 @@ class App(tk.Tk):
         painel1.grid(row=1, column=2)
 
         #Bandeira do pais 2
-        im_temp = Image.open("C:/Users/Laure/OneDrive/Documentos/CPD/TrabalhoFinal/Flags/"+country2+".gif")
+        im_temp = Image.open("Flags/"+alpha2+".gif")
         im_temp = im_temp.resize((175, 88), Image.ANTIALIAS)
         im_temp.save("teste.gif", "gif")
         
@@ -108,7 +127,7 @@ class App(tk.Tk):
         painel22.grid(row=1, column=4)
 
         #Mapa do pais 2
-        im_temp = Image.open("C:/Users/Laure/OneDrive/Documentos/CPD/TrabalhoFinal/Maps/"+country2+".gif")
+        im_temp = Image.open("Maps/"+alpha2+".gif")
         im_temp = im_temp.resize((175, 88), Image.ANTIALIAS)
         im_temp.save("teste.gif", "gif")
         
