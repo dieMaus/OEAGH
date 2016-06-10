@@ -1,10 +1,12 @@
 #improved GUI
 #Corrijam meu ingles, senpais.
-#Se quiserem rodar essa GUI, baixem o Pillow
+#Se quiserem rodar essa GUI, baixem o Pillow e o Unidecode
 
 import tkinter as tk
 from tkinter import END, LEFT, RIGHT
 from PIL import Image
+from unidecode import unidecode
+import pycountry
 
 LARGE_FONT = ("Verdana", 12)
 
@@ -18,6 +20,15 @@ class App(tk.Tk):
 
         container.grid_rowconfigure(0, weight=1)
         container.grid_columnconfigure(0, weight=1)
+        
+        dictio = {}
+        t = list(pycountry.countries)
+
+        for country in t:
+            name = country.name.lower()
+            name = unidecode(name)
+            iso = country.alpha3
+            dictio[name] = iso
 
         self.frames = {}
 
