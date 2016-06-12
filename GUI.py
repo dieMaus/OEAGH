@@ -8,6 +8,14 @@ from PIL import Image
 from unidecode import unidecode
 import pycountry
 
+dictio = {}
+t = list(pycountry.countries)
+for country in t:
+    name = country.name.lower()
+    name = unidecode(name)
+    iso = country.alpha3
+    dictio[name] = iso
+
 LARGE_FONT = ("Verdana", 12)
 
 class App(tk.Tk):
@@ -21,16 +29,6 @@ class App(tk.Tk):
         container.grid_rowconfigure(0, weight=1)
         container.grid_columnconfigure(0, weight=1)
         
-        #Meus problemas começam aqui: não consigo usar esse dicionário em Compare
-        dictio = {}
-        t = list(pycountry.countries)
-
-        for country in t:
-            name = country.name.lower()
-            name = unidecode(name)
-            iso = country.alpha3
-            dictio[name] = iso
-
         self.frames = {}
 
         for F in (StartPage, SelExibe, SelLista, SelCompara):
@@ -84,15 +82,6 @@ class App(tk.Tk):
         country2 = country2.lower()
         country2 = unidecode(country2)
         
-        #No fim, tenho que recriar o dicionário a cada nova pesquisa, ao invés de usar um só :/
-        dictio = {}
-        t = list(pycountry.countries)
-        for country in t:
-            name = country.name.lower()
-            name = unidecode(name)
-            iso = country.alpha3
-            dictio[name] = iso
-            
         alpha1 = dictio[country1]
         alpha2 = dictio[country2]
 
