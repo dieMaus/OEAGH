@@ -1,7 +1,7 @@
 import bisect
 import itertools
 import operator
-
+import pickle
 
 class _BNode(object):
     __slots__ = ["tree", "contents", "children"]
@@ -311,3 +311,7 @@ b.insert([9, "m"]) #Ele considera, na organizacao, o 1o item
 b.insert(7)
 b.insert(5)
 b.show(5)
+
+fil = open('btree.pkl', 'wb')
+pickle.dump(b, fil, -1) #-1 e prioridade maxima. Tem que usar, caso contrari nao funciona
+fil.close()
