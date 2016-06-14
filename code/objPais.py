@@ -96,7 +96,7 @@ class Country:
 		return self.GDPperCapita
 		
 	# definir metodos para imprimir dados (para testes e quica para uma caixa de texto na versao final)
-	
+	#Para a caixa de texto, essa função não é necessária. Na versão final, proponho tirarmos esse método #Lauren
 	def showCountryData(self):
 		self.compute_popDensity()
 		self.compute_GDPperCapita()
