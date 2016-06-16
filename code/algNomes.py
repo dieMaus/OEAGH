@@ -36,4 +36,4 @@ for country in t:
 
     if os.path.isfile(old):
         os.rename(old, new)
-        print 'Feito'
+        print('Feito')
