@@ -120,8 +120,12 @@ class _BNode(object):
         self.children = self.children[:center + 1]
         return sibling, median
 
-    def show(self):
-        print(self.contents)
+    def show(self, index):
+        ind = 0
+        for cell in self.contents:
+            if ind == index:
+                print(cell)
+            ind += 1
 
     def insert(self, index, item, ancestors):
         self.contents.insert(index, item)
@@ -194,7 +198,7 @@ class BTree(object):
         current = self._root
         ancestors = self._path_to(item)
         node, index = ancestors[-1]
-        node.show()
+        node.show(index)
 
     def insert(self, item):
         current = self._root
