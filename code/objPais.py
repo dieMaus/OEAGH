@@ -4,7 +4,7 @@
 class Country:
 
 	## FUNCAO QUE INICIALIZA UM OBJETO COUNTRY
-	#Alterei todas as ocorrencias de "iso3116" por "iso3166"
+	#Alterei todas as ocorrencias de "iso3116" por "iso3166" #Lauren
 	def __init__(self, name, capital, largestCity, iso3166, internetTLD, callingCode, population, area, currencyName, currency3letter, gdp, hdi, gini):
 		# area sera em km^2, GDP sera em US$
 	
@@ -43,7 +43,7 @@ class Country:
 		return self.largestCity
 		
 	def get_iso3166(self):
-		return self.iso3116
+		return self.iso3166
 		
 	def get_internetTLD(self):
 		return self.internetTLD
