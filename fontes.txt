@@ -5,5 +5,6 @@ Textboxes
 Pictures
 - http://stackoverflow.com/questions/4066202/resizing-pictures-in-pil-in-tkinter
 
-Children Windows
+Windows & Frames
 - http://stackoverflow.com/questions/15306631/how-tocreate-children-windows-using-python-tkinter
+- https://www.youtube.com/watch?v=jBUpjijYtCk
