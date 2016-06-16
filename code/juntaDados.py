@@ -41,7 +41,7 @@ with open(os.path.abspath('../country_data/GDP spam 1960-2015.csv'), newline='')
     reader = csv.DictReader(gdp)
     for linha in reader:
         for linhaPai in readerPai:
-            if linha['country'] == linhaPai['Country Name']:
+            if linha['Country Name'] == linhaPai['name']:
                 break
         else:
             # país não esta na lista do arquivo principal
@@ -54,3 +54,69 @@ with open(os.path.abspath('../country_data/GDP spam 1960-2015.csv'), newline='')
                 break
         else:
             writer.writerow({'gdp': linha[str(ano)]})
+
+with open(os.path.abspath('../country_data/GINI spam 1960-2015.csv'), newline='') as gini:
+    reader = csv.DictReader(gini)
+    for linha in reader:
+        for linhaPai in readerPai:
+            if linha['Country Name'] == linhaPai['name']:
+                break
+        else:
+            # país não esta na lista do arquivo principal
+            continue
+
+        ano = 2015
+        while not linha[str(ano)]:
+            ano -= 1
+            if ano == 1960:
+                break
+        else:
+            writer.writerow({'gini': linha[str(ano)]})
+
+with open(os.path.abspath('../country_data/POP spam 1980-2010.csv'), newline='') as pop:
+    reader = csv.DictReader(pop)
+    for linha in reader:
+        for linhaPai in readerPai:
+            if linha['Country Name'] == linhaPai['name']:
+                break
+        else:
+            # país não esta na lista do arquivo principal
+            continue
+
+        ano = 2015
+        while not linha[str(ano)]:
+            ano -= 1
+            if ano == 1960:
+                break
+        else:
+            writer.writerow({'population': linha[str(ano)]})
+
+with open(os.path.abspath('../country_data/surfaceArea spam 1960-2015.csv'), newline='') as area:
+    reader = csv.DictReader(area)
+    for linha in reader:
+        for linhaPai in readerPai:
+            if linha['Country Name'] == linhaPai['name']:
+                break
+        else:
+            # país não esta na lista do arquivo principal
+            continue
+
+        ano = 2015
+        while not linha[str(ano)]:
+            ano -= 1
+            if ano == 1960:
+                break
+        else:
+            writer.writerow({'area': linha[str(ano)]})
+
+with open(os.path.abspath('../country_data/IDH 2014.csv'), newline='') as idh:
+    reader = csv.DictReader(idh)
+    for linha in reader:
+        for linhaPai in readerPai:
+            if linha['country'] == linhaPai['Country Name']:
+                break
+        else:
+            # país não esta na lista do arquivo principal
+            continue
+
+        writer.writerow({'hdi': linha['2014']})
