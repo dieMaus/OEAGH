@@ -4,7 +4,8 @@
 class Country:
 
 	## FUNCAO QUE INICIALIZA UM OBJETO COUNTRY
-	def __init__(self, name, capital, largestCity, iso3116, internetTLD, callingCode, population, area, currencyName, currency3letter, gdp, hdi, gini):
+	#Alterei todas as ocorrencias de "iso3116" por "iso3166"
+	def __init__(self, name, capital, largestCity, iso3166, internetTLD, callingCode, population, area, currencyName, currency3letter, gdp, hdi, gini):
 		# area sera em km^2, GDP sera em US$
 	
 		# Dados basicos
@@ -15,7 +16,7 @@ class Country:
 		#(flag and map?)
 		
 		# Siglas
-		self.iso3116 = iso3116
+		self.iso3166 = iso3166
 		self.internetTLD = internetTLD
 		self.callingCode = callingCode
 		
@@ -41,7 +42,7 @@ class Country:
 	def get_largestCity(self):
 		return self.largestCity
 		
-	def get_iso3116(self):
+	def get_iso3166(self):
 		return self.iso3116
 		
 	def get_internetTLD(self):
@@ -94,6 +95,13 @@ class Country:
 	def get_GDPperCapita(self):
 		# get-method para a variavel inicializada no metodo anterior
 		return self.GDPperCapita
+	
+	#Adicionei esses dois metodos para criar o nome do arquivo de imagem #Lauren
+	def set_map(self):
+		return "Maps/" + self.iso3166 + ".gif"
+	
+	def set_flag(self):
+		return "Flags/" + self.iso3166 + ".gif"
 		
 	# definir metodos para imprimir dados (para testes e quica para uma caixa de texto na versao final)
 	#Para a caixa de texto, essa função não é necessária. Na versão final, proponho tirarmos esse método #Lauren
