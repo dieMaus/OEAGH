@@ -49,5 +49,8 @@ with open(os.path.abspath('../country_data/GDP spam 1960-2015.csv'), newline='')
 
         ano = 2015
         while not linha[str(ano)]:
-            ano += 1
-        writer.writerow({'gdp': linha[str(ano)]})
+            ano -= 1
+            if ano == 1960:
+                break
+        else:
+            writer.writerow({'gdp': linha[str(ano)]})
