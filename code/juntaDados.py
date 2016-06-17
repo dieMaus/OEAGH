@@ -128,6 +128,17 @@ with open(os.path.abspath('../country_data/Inflacao data spam 1980-2015.csv'), n
             # país não esta na lista do arquivo principal
             continue
 
+with open(os.path.abspath('../country_data/basicamente tld.csv'), newline='') as tld:
+    reader = csv.DictReader(tld)
+    for linha in reader:
+        for linhaPai in master:
+            if linha['ISO 3166-1 3 Letter Code'] == linhaPai[3]:
+                linhaPai[5] = linha['IANA Country Code TLD']
+                break
+        else:
+            # país não esta na lista do arquivo principal
+            continue
+
 writer.writerows(master)
 
 final.close()
