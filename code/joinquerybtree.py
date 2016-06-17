@@ -1,7 +1,7 @@
 '''
   File: btree.py
   Author: Steve Hubbard and Kent D. Lee
-  Modifyed by: Germano Martinelli, Henrique Silva e Lauren Rolan
+  Modified by: Germano Martinelli, Henrique Silva and Lauren Rolan
   Date: 8/27/2014
   Description: This module provides the BTree class, based on support from
     the BTreeNode class.  The BTreeNode class is also implemented in this 
