@@ -12,7 +12,7 @@ fieldnames = ['name', 'capital', 'largestCity',
               'population', 'area', 'currencyName',
               'currency3letter', 'gdp', 'idh', 'gini',
               'lifeExp', 'continent', 'coastArea',
-              'govForm', 'currentInflation']
+              'govForm', 'currentInflation', 'tourism']
 
 # na minha matriz vai ficar assim
 # ['name', 'capital', 'largestCity','iso3166-a3', 'iso3166-a2', 'internetTLD', 'callingCode','population', 'area', 'currencyName','currency3letter', 'gdp', 'idh', 'gini']
@@ -37,7 +37,7 @@ with open(os.path.abspath('../country_data/country-codes.csv'), newline='') as c
                            linha['ISO3166-1-Alpha-3'], linha['ISO3166-1-Alpha-2'], 'n.a.', linha['Dial'],
                            'n.a.', 'n.a.', linha['currency_name'],
                            linha['currency_alphabetic_code'], 'n.a.', 'n.a.', 'n.a.',
-                           'n.a.', 'n.a.', 'n.a.', 'n.a.', 'n.a.'])
+                           'n.a.', 'n.a.', 'n.a.', 'n.a.', 'n.a.', 'n.a.'])
 
 with open(os.path.abspath('../country_data/capitals.csv'), newline='', encoding='utf-8') as capitals:
     reader = csv.DictReader(capitals)
@@ -56,8 +56,6 @@ with open(os.path.abspath('../country_data/countries.csv'), newline='', encoding
         for linhaPai in master:
             if linha['Country code'] == linhaPai[4]:
                 linhaPai[15] = linha['Continent']
-                linhaPai[7] = linha['Population']
-                linhaPai[8] = linha['Area']
                 linhaPai[16] = linha['Coastline']
                 linhaPai[17] = linha['Government form'].capitalize()
                 linhaPai[14] = linha['Life expectancy']
@@ -66,7 +64,24 @@ with open(os.path.abspath('../country_data/countries.csv'), newline='', encoding
             # país não esta na lista do arquivo principal
             continue
 
-with open(os.path.abspath('../country_data/GDP spam 1960-2015.csv'), newline='') as gdp:
+with open(os.path.abspath('../country_data/surface area.csv'), newline='') as area:
+    reader = csv.DictReader(area)
+    for linha in reader:
+        for linhaPai in master:
+            if linha['Country Code'] == linhaPai[3]:
+                ano = 2015
+                while not linha[str(ano)]:
+                    ano -= 1
+                    if ano == 1960:
+                        break
+                else:
+                    linhaPai[8] = linha[str(ano)]
+                break
+        else:
+            # país não esta na lista do arquivo principal
+            continue
+
+with open(os.path.abspath('../country_data/GDP 2015.csv'), newline='') as gdp:
     reader = csv.DictReader(gdp)
     for linha in reader:
         for linhaPai in master:
@@ -83,7 +98,7 @@ with open(os.path.abspath('../country_data/GDP spam 1960-2015.csv'), newline='')
             # país não esta na lista do arquivo principal
             continue
 
-with open(os.path.abspath('../country_data/GINI spam 1960-2015.csv'), newline='') as gini:
+with open(os.path.abspath('../country_data/GINI 2015.csv'), newline='') as gini:
     reader = csv.DictReader(gini)
     for linha in reader:
         for linhaPai in master:
@@ -100,6 +115,40 @@ with open(os.path.abspath('../country_data/GINI spam 1960-2015.csv'), newline=''
             # país não esta na lista do arquivo principal
             continue
 
+with open(os.path.abspath('../country_data/population 2015.csv'), newline='') as pop:
+    reader = csv.DictReader(pop)
+    for linha in reader:
+        for linhaPai in master:
+            if linha['Country Code'] == linhaPai[3]:
+                ano = 2015
+                while not linha[str(ano)]:
+                    ano -= 1
+                    if ano == 1960:
+                        break
+                else:
+                    linhaPai[7] = linha[str(ano)]
+                break
+        else:
+            # país não esta na lista do arquivo principal
+            continue
+
+with open(os.path.abspath('../country_data/tourism on percent of exports.csv'), newline='') as pop:
+    reader = csv.DictReader(pop)
+    for linha in reader:
+        for linhaPai in master:
+            if linha['Country Code'] == linhaPai[3]:
+                ano = 2015
+                while not linha[str(ano)]:
+                    ano -= 1
+                    if ano == 1960:
+                        break
+                else:
+                    linhaPai[19] = linha[str(ano)]
+                break
+        else:
+            # país não esta na lista do arquivo principal
+            continue
+
 with open(os.path.abspath('../country_data/IDH 2014.csv'), newline='') as idh:
     reader = csv.DictReader(idh)
     for linha in reader:
@@ -111,7 +160,7 @@ with open(os.path.abspath('../country_data/IDH 2014.csv'), newline='') as idh:
             # país não esta na lista do arquivo principal
             continue
 
-with open(os.path.abspath('../country_data/Inflacao data spam 1980-2015.csv'), newline='') as inflacao:
+with open(os.path.abspath('../country_data/inflacao 2015.csv'), newline='') as inflacao:
     reader = csv.DictReader(inflacao)
     for linha in reader:
         for linhaPai in master:
