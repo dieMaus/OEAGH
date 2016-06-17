@@ -125,6 +125,7 @@ class _BNode(object):
         for cell in self.contents:
             if ind == index:
                 print(cell)
+                return list(cell)
             ind += 1
 
     def insert(self, index, item, ancestors):
@@ -176,14 +177,21 @@ class BTree(object):
         ancestry = []
 
         while getattr(current, "children", None):
-            index = bisect.bisect_left(current.contents, item)
+            lista1 = []
+            for content in current.contents:
+                lista1.append(content[0])
+            index = bisect.bisect_left(lista1, item[0])
             ancestry.append((current, index))
             if index < len(current.contents) \
                     and current.contents[index] == item:
                 return ancestry
             current = current.children[index]
 
-        index = bisect.bisect_left(current.contents, item)
+        lista = []
+        for content in current.contents:
+            lista.append(content[0])
+
+        index = bisect.bisect_left(lista, item[0])
         ancestry.append((current, index))
         present = index < len(current.contents)
         present = present and current.contents[index] == item
@@ -198,7 +206,7 @@ class BTree(object):
         current = self._root
         ancestors = self._path_to(item)
         node, index = ancestors[-1]
-        node.show(index)
+        return node.show(index)
 
     def insert(self, item):
         current = self._root
