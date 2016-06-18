@@ -1,24 +1,26 @@
 Germano:
   Criar um objeto País, reunindo os dados que serão usados e criando os métodos (funções) relevantes
-  remover países irrelevantes(aqueles sem dados)
+  remover países irrelevantes(aqueles sem dados (republica centro africana sheds a single tear))
 
 Henrique:
-  научиться использовать CSV-файл с питоном
-  pegar os dados em formato csv (então!?!?!?!) #Pegar os dados em CSV e salvar num arq. bin. com o Pickle (se não o usar, ganha pontos)
+  (OK) научиться использовать CSV-файл с питоном
+  (OK) pegar os dados em formato csv
+  Pegar os dados em CSV e salvar num arq. bin. com o Pickle (se não o usar, ganha pontos)
+  (OK) escolher de onde pegar os dados (vou catar tudo no meu historio e dar dump no fontes.txt)
+  fazer o relatorio
 
 Lauren:
-  (OK)Elaborar o GUI
+  (OK) Elaborar o GUI
   (OK) Coletar as bandeiras e mapas(?) dos países
   Implementar features (listagem, comparação e exibição)
 
 Não-alocado:
-  bolar o formato de arquivos para guardar os dados
-  usar expressões regulares para o web scraping(?!)
+  (OK) bolar o formato de arquivos para guardar os dados (Vai ser .kbb, alias, tem que ser .kbb)
   criar uma árvore B para cada indicador
-  escolher de onde pegar os dados
+
 
 Etc:
-  chorar
+  (OK) chorar
   убить всех враждебных
   найти противогаз
   коммитировать что-нибудь

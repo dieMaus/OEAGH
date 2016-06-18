@@ -8,3 +8,11 @@ Pictures
 Windows & Frames
 - http://stackoverflow.com/questions/15306631/how-tocreate-children-windows-using-python-tkinter
 - https://www.youtube.com/watch?v=jBUpjijYtCk
+
+Indicadores e .csv's
+- https://www.oanda.com/lang/pt/currency/table
+- http://data.worldbank.org/indicator
+- https://github.com/datasets/country-codes/blob/master/data/country-codes.csv
+- https://datahub.io/dataset/iso-3166-1-alpha-2-country-codes/resource/9c3b30dd-f5f3-4bbe-a3cb-d7b2c21d66ce
+- https://www.worlddata.info/downloads/
+- http://hdr.undp.org/en/composite/HDI
