@@ -12,7 +12,7 @@ fieldnames = ['name', 'capital', 'largestCity',
               'population', 'area', 'currencyName',
               'currency3letter', 'gdp', 'idh', 'gini',
               'lifeExp', 'continent', 'coastArea',
-              'govForm', 'currentInflation', 'tourism']
+              'govForm', 'currentInflation', 'tourism', 'currency/dolar']
 
 # na minha matriz vai ficar assim
 # ['name', 'capital', 'largestCity','iso3166-a3', 'iso3166-a2', 'internetTLD', 'callingCode','population', 'area', 'currencyName','currency3letter', 'gdp', 'idh', 'gini']
@@ -37,7 +37,7 @@ with open(os.path.abspath('../country_data/country-codes.csv'), newline='') as c
                            linha['ISO3166-1-Alpha-3'], linha['ISO3166-1-Alpha-2'], 'n.a.', linha['Dial'],
                            'n.a.', 'n.a.', linha['currency_name'],
                            linha['currency_alphabetic_code'], 'n.a.', 'n.a.', 'n.a.',
-                           'n.a.', 'n.a.', 'n.a.', 'n.a.', 'n.a.', 'n.a.'])
+                           'n.a.', 'n.a.', 'n.a.', 'n.a.', 'n.a.', 'n.a.', 'n.a.'])
 
 with open(os.path.abspath('../country_data/capitals.csv'), newline='', encoding='utf-8') as capitals:
     reader = csv.DictReader(capitals)
@@ -62,6 +62,39 @@ with open(os.path.abspath('../country_data/countries.csv'), newline='', encoding
                 break
         else:
             # país não esta na lista do arquivo principal
+            continue
+
+with open(os.path.abspath('../country_data/currencies.csv'), newline='', encoding='utf-8') as money:
+    reader = csv.DictReader(money)
+    for linha in reader:
+        for linhaPai in master:
+            if linha['Codigo'] == linhaPai[10]:
+                linhaPai[20] = linha['Unidades1USD']
+                break
+        else:
+            # moeda não esta na lista do arquivo principal
+            continue
+    for linhaPai in master:
+        if linhaPai[10] == 'USD':
+            linhaPai[20] = '1'
+            continue
+        if linhaPai[10] == 'EUR':
+            linhaPai[20] = '0.8884'
+            continue
+        if linhaPai[10] == 'XAF':
+            linhaPai[20] = '582.657'
+            continue
+        if linhaPai[10] == 'XCD':
+            linhaPai[20] = '2.7169'
+            continue
+        if linhaPai[10] == 'XOF':
+            linhaPai[20] = '591.096'
+            continue
+        if linhaPai[10] == 'ZAR':
+            linhaPai[20] = '15.2509'
+            continue
+        if linhaPai[10] == 'INR':
+            linhaPai[20] = '67.2775'
             continue
 
 with open(os.path.abspath('../country_data/surface area.csv'), newline='') as area:
