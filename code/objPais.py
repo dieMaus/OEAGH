@@ -8,12 +8,13 @@ class Country:
     def __init__(self, name, capital, iso3166a2, iso3166a3, internetTLD,
                  callingCode, population, area, currencyName,
                  currency3letter, gdp, hdi, gini, lifeExp, continent,
-                 coastArea, govForm, currInflation, tourism, currencyDolar):
+                 coastArea, govForm, currInflation, tourism, currencyDolar, index):
         # area sera em km^2, GDP sera em milhoes de US$
 
         # Dados basicos
         self.name = name
         self.capital = capital
+        self.index = index
 
         # Siglas
         self.iso3166a2 = iso3166a2
