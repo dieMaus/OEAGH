@@ -120,11 +120,13 @@ class Country:
         return self.GDPperCapita
 
     # Adicionei esses dois metodos para criar o nome do arquivo de imagem #Lauren
-    def set_map(self):
-        return "../maps/" + self.iso3166a3 + ".gif"
+    def return_path_map(self):
+        import os
+        return os.path.abspath('../maps/' + self.iso3166a3 + '.gif')
 
-    def set_flag(self):
-        return "../flags/" + self.iso3166a3 + ".gif"
+    def return_path_flag(self):
+        import os
+        return os.path.abspath('../flags/' + self.iso3166a3 + '.gif')
 
     # definir metodos para imprimir dados (para testes e quica para uma caixa de texto na versao final)
     # Para a caixa de texto, essa função não é necessária. Na versão final, proponho tirarmos esse método #Lauren

@@ -17,3 +17,4 @@ for pais in reader:
     pickle.dump(buffer, endpoint)
 
 database.close()
+endpoint.close()
