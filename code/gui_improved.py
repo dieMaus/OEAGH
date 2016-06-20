@@ -43,14 +43,15 @@ class App(tk.Tk):
         frame = tk.Toplevel(self)
         
         label = tk.Label(frame, text="%s" %(country))
-        label.pack()
+        label.grid(row=0, column=2)
         S = tk.Scrollbar(frame)
         T = tk.Text(frame, height=4, width=50)
-        S.pack(pady=2, padx=2, side=RIGHT)
-        T.pack(pady=2, padx=2, side=LEFT)
+        S.grid(pady=2, padx=2, row=2, column=0)
+        T.grid(pady=2, padx=2, row=2, column=1, columnspan=3)
         S.config(command=T.yview)
         T.config(yscrollcommand=S.set)
 
+        #Para pastas irmas, usar o '../' antes de Btrees
         bname = open("Btrees/names.pkl", 'rb')
 
         b = btree.BTree(4)
@@ -61,14 +62,54 @@ class App(tk.Tk):
         bname.close()
 
         binary = open("Btrees/binaries.kbb", 'rb')
-        for num in range(0, ind):
+        for num in range(0, index):
             count = pickle.load(binary)
 
         binary.close()
+
+        mapa = count.return_path_map()
+        flag = count.return_path_flag()
+
+        #Bandeira do pais
+        im_temp = Image.open(flag)
+        im_temp = im_temp.resize((175, 90), Image.ANTIALIAS)
+        im_temp.save("teste.gif", "gif")
         
-        quote="""Aqui serao exibidos os dados de um pais"""
+        flag1 = tk.PhotoImage(file="teste.gif")
+        painel11 = tk.Label(frame, image = flag1)
+        painel11.image = flag1 #mantenha a referencia, mantenha a referencia, mantenha a refere...
+        painel11.grid(row=1, column=1)
+
+        #Mapa do pais
+        im_temp = Image.open(mapa)
+        im_temp = im_temp.resize((175, 90), Image.ANTIALIAS)
+        im_temp.save("teste.gif", "gif")
         
-        T.insert(END, quote)
+        map1 = tk.PhotoImage(file="teste.gif")
+        painel1 = tk.Label(frame, image = map1)
+        painel1.image = map1 #mantenha a referencia, mantenha a referencia, mantenha a refere...
+        painel1.grid(row=1, column=3)
+        
+        #E a maneira burra ataca novamente
+        T.insert(CURRENT, "Capital:\t\t" + count.capital + '\n')
+        T.insert(CURRENT, "ISO3166a2:\t\t" + count.iso3166a2 + '\n')
+        T.insert(CURRENT, "ISO3166a3:\t\t" + count.iso3166a3 + '\n')
+        T.insert(CURRENT, "Internet TLD:\t\t" + count.internetTLD + '\n')
+        T.insert(CURRENT, "Calling Code:\t\t" + count.callingCode + '\n')
+        T.insert(CURRENT, "Continent:\t\t" + count.continent + '\n')
+        T.insert(CURRENT, "Government:\t\t" + count.government + '\n')
+        T.insert(CURRENT, "Population:\t\t" + str(count.population) + '\n')
+        T.insert(CURRENT, "Area:\t\t" + str(count.area) + '\n')
+        T.insert(CURRENT, "Coast Area:\t\t" + str(count.coastArea) + '\n')
+        T.insert(CURRENT, "HDI:\t\t" + str(count.hdi) + '\n')
+        T.insert(CURRENT, "GINI:\t\t" + str(count.gini) + '\n')
+        T.insert(CURRENT, "Life Expec.:\t\t" + str(count.lifeExp) + '\n')
+        T.insert(CURRENT, "Currency:\t\t" + count.currencyName + '\n')
+        T.insert(CURRENT, "Currency 3 L.:\t\t" + count.currency3letter + '\n')
+        T.insert(CURRENT, "GDP:\t\t" + str(count.gdp) + '\n')
+        T.insert(CURRENT, "Inflation:\t\t" + str(count.inflation) + '\n')
+        T.insert(CURRENT, "Tourism:\t\t" + str(count.tourism) + '\n')
+        T.insert(CURRENT, "Currency Exch.:\t\t" + str(count.currencyExchange) + '\n')
 
     def List_it(self, data, value):
         frame = tk.Toplevel(self)
