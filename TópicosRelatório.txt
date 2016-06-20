@@ -1,5 +1,0 @@
-Tópicos a serem citados no relatório
-- Porque usamos Pickle ao invés de manipular arquivos em baixo nível
-- Porque usamos um dicionário (para transformar nome em sigla)
-- Porque usamos índices ao invés de ponteiros (Python não lida bem com ponteiros)
-- Porque carregamos toda a árvore B para a memória (não conseguimos salvar em blocos)
