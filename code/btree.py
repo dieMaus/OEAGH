@@ -125,7 +125,7 @@ class _BNode(object):
         ind = 0
         for cell in self.contents:
             if ind == index:
-                print(cell)
+                return (cell)
             ind += 1
 
     def show_node(self):        #Funcao para fins de debug
@@ -236,7 +236,7 @@ class BTree(object):
         current = self._root
         ancestors = self._path_to(item)
         node, index = ancestors[-1]
-        node.show(index)
+        return (node.show(index))
 
     def show_node(self, item):      #funcao para fins de debug
         current = self._root
