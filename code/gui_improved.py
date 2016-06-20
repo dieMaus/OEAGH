@@ -35,19 +35,25 @@ class App(tk.Tk):
             frame.grid(row=0, column=0, sticky="nsew")
 
         self.show_frame(StartPage)
-
+        
+    #Exibe um novo frame
     def show_frame(self, cont):
         frame = self.frames[cont]
         frame.tkraise()
-        
-    def quit(self):
+    
+    #Fecha o aplicativo
+    def quit_it(self):
         self.destroy()
 
+    #Exibe uma nova janela, exibindo os dados do pais anteriormente selecionado
     def Display(self, country):
         frame = tk.Toplevel(self)
         
+        #Exibe o nome do pais, assim como o usuário o digitou
         label = tk.Label(frame, text="%s" %(country))
         label.grid(row=0, column=2)
+        
+        #Seta scrollbar e text box
         S = tk.Scrollbar(frame)
         T = tk.Text(frame, height=10, width=50)
         S.grid(pady=2, padx=2, row=2, column=0)
@@ -58,30 +64,33 @@ class App(tk.Tk):
         #Para pastas irmas, usar o '../' antes de Btrees
         bname = open("Btrees/names.pkl", 'rb')
 
+        #Inicializa e desserializa a arvore B
         b = btree.BTree(4)
         b = pickle.load(bname)
         nodo = b.show([country])
-        index = nodo[1]
+        index = nodo[1] #Recebe o indice (usado como ponteiro) para o arquivo binario
 
         bname.close()
 
         binary = open("Btrees/binaries.kbb", 'rb')
-        for num in range(0, index):
-            count = pickle.load(binary)
+        for num in range(0, index):     
+            count = pickle.load(binary) #Recebe o pais de indice 'index'
 
         binary.close()
 
-        mapa = count.return_path_map()
+        #Seta path para mapa e bandeira
+        mapa = count.return_path_map() 
         flag = count.return_path_flag()
 
         #Bandeira do pais
+        #Cria imagem temporaria reduzida
         im_temp = Image.open(flag)
         im_temp = im_temp.resize((175, 90), Image.ANTIALIAS)
         im_temp.save("teste.gif", "gif")
         
-        flag1 = tk.PhotoImage(file="teste.gif")
-        painel11 = tk.Label(frame, image = flag1)
-        painel11.image = flag1 #mantenha a referencia, mantenha a referencia, mantenha a refere...
+        flag = tk.PhotoImage(file="teste.gif")
+        painel11 = tk.Label(frame, image = flag)
+        painel11.image = flag
         painel11.grid(row=1, column=1)
 
         #Mapa do pais
@@ -89,12 +98,12 @@ class App(tk.Tk):
         im_temp = im_temp.resize((175, 90), Image.ANTIALIAS)
         im_temp.save("teste.gif", "gif")
         
-        map1 = tk.PhotoImage(file="teste.gif")
-        painel1 = tk.Label(frame, image = map1)
-        painel1.image = map1 #mantenha a referencia, mantenha a referencia, mantenha a refere...
+        mapa = tk.PhotoImage(file="teste.gif")
+        painel1 = tk.Label(frame, image = mapa)
+        painel1.image = mapa
         painel1.grid(row=1, column=3)
         
-        #E a maneira burra ataca novamente
+        #Exibicao do objeto Pais selecionado (modo naive)
         T.insert(CURRENT, "Capital:\t\t" + count.capital + '\n')
         T.insert(CURRENT, "ISO3166a2:\t\t" + count.iso3166a2 + '\n')
         T.insert(CURRENT, "ISO3166a3:\t\t" + count.iso3166a3 + '\n')
@@ -115,10 +124,15 @@ class App(tk.Tk):
         T.insert(CURRENT, "Tourism:\t\t" + str(count.tourism) + '\n')
         T.insert(CURRENT, "Currency Exch.:\t\t" + str(count.currencyExchange) + '\n')
 
+    #Abre uma nova janela, listando o dado selecionado de maneira crescente ou decrescente
     def List_it(self, data, value):
         frame = tk.Toplevel(self)
+        
+        #Imprime o dado selecionado, tal como o usuario o digitou
         label = tk.Label(frame, text="%s" %(data))
         label.pack()
+        
+        #Seta scrollbar e text box
         S = tk.Scrollbar(frame)
         T = tk.Text(frame, height=10, width=50)
         S.pack(pady=2, padx=2, side=RIGHT)
@@ -126,9 +140,15 @@ class App(tk.Tk):
         S.config(command=T.yview)
         T.config(yscrollcommand=S.set)
 
+        #Padroniza a entrada
         data = unidecode(data)
+        data = data.lower()
+        data = data.split(' ')
+        data = ''.join(data)
+        
         lista = []
-
+        
+        #Inicializa a arvore B
         b = btree.BTree(4)
         nameoffile = "Btrees/" + data + ".pkl"
 
@@ -140,7 +160,7 @@ class App(tk.Tk):
             b = pickle.load(file)
             file.close()
             
-            #Estamos usando apenas a arvore B, pois teriamos problemas com o Pickle
+            #Estamos usando apenas a arvore B, uma vez que teriamos problemas com o Pickle
             #Teriamos que abrir e fechar o arquivo a cada pesquisa, pois ele eh um serializador
         
             if value == 0:
@@ -148,10 +168,11 @@ class App(tk.Tk):
             else:
                 lista = b.decrescent(b._root, lista)
             
-            #Mais uma vez, ficou feio :P
+            #For que imprime cada objeto da lista organizada
             for obj in lista:
                 T.insert(CURRENT, obj[1] + ' \t\t ' + str(obj[0]) + "\n")
 
+    #Abre uma nova janela que exibe simultaneamente os dados dos dois paises selecionados anteriormente
     def Compare(self, country1, country2):
         frame = tk.Toplevel(self)
 
@@ -168,6 +189,8 @@ class App(tk.Tk):
         
         bname.close()
 
+        #Como usamos um serializador, eh necessario verificar qual tem o menor indice.
+        #Se isso nao for feito, ocorre um erro.
         if ind1 > ind2:
             aux = country1
             country1 = country2
@@ -176,6 +199,7 @@ class App(tk.Tk):
             ind1 = ind2
             ind2 = a
         
+        #Exibe a string "#pais1 vs #pais2"
         label1 = tk.Label(frame, text="%s" %(country1), font=LARGE_FONT)
         label1.grid(row=0, column=2, sticky="E")
 
@@ -187,7 +211,7 @@ class App(tk.Tk):
 
         #Adicione '../' antes de Btrees, se esta numa pasta irma
         binary = open("Btrees/binaries.kbb", 'rb')
-        for num in range(0, ind1):
+        for num in range(0, ind1):          #Busca, com base no indice, o bloco do pais solicitado
             count1 = pickle.load(binary)
 
         for num in range(0, ind2-ind1):
@@ -195,12 +219,14 @@ class App(tk.Tk):
 
         binary.close()
         
+        #Seta o path para os mapas e bandeiras
         map1 = count1.return_path_map()
         map2 = count2.return_path_map()
         flag1 = count1.return_path_flag()
         flag2 = count2.return_path_flag()
 
         #Bandeira do pais 1
+        #As primeiras tres linhas nos 4 casos sao para o tratamento da imagem
         im_temp = Image.open(flag1)
         im_temp = im_temp.resize((175, 90), Image.ANTIALIAS)
         im_temp.save("teste.gif", "gif")
@@ -255,8 +281,7 @@ class App(tk.Tk):
         S2.config(command=T2.yview)
         T2.config(yscrollcommand=S2.set)
 
-        #Forma longa e burra de imprimir os dados. Por favor, sintam-se
-        #a vontade para corrigir.
+        #Dados sao impressos de maneira ingenua (nao conseguimos desenvolver outra implementacao)
 
         T1.insert(CURRENT, "Capital:\t\t" + count1.capital + '\n')
         T2.insert(CURRENT, "Capital:\t\t" + count2.capital + '\n')
@@ -358,32 +383,38 @@ class App(tk.Tk):
             T1.insert(CURRENT, "Currency Exch.:\t\t" + str(count1.currencyExchange) + '\n')
             T2.insert(CURRENT, "Currency Exch.:\t\t" + str(count2.currencyExchange) + '\n', 'destaque')
 
+#Pagina inicial e principal
 class StartPage(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
         label = tk.Label(self, text="Select", font=LARGE_FONT)
         label.pack(pady=10, padx=10)
 
+        #Botao que leva a janela de exibicao
         button1 = tk.Button(self, text="Display",
                             command=lambda: controller.show_frame(SelExibe),
                             height = 1, width = 10)
         button1.pack(pady=5)
 
+        #Botao que leva a janela de listagem
         button2 = tk.Button(self, text="Listing",
                             command=lambda: controller.show_frame(SelLista),
                             height = 1, width = 10)
         button2.pack(pady=5)
 
+        #Botao que leva a janela de comparacao
         button3 = tk.Button(self, text="Comparison",
                             command=lambda: controller.show_frame(SelCompara),
                             height = 1, width = 10)
         button3.pack(pady=5)
         
+        #Botao de encerramento
         button4 = tk.Button(self, text="Quit",
-                            command=lambda: controller.quit(),
+                            command=lambda: controller.quit_it(),
                             height = 1, width=10)
         button4.pack(pady=10)
 
+#Frame secundario, onde o usuario seleciona qual pais quer exibir
 class SelExibe(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
@@ -396,13 +427,16 @@ class SelExibe(tk.Frame):
         e1 = tk.Entry(self)
         e1.pack()
 
+        #Botao de busca: inicializa uma nova janela onde o pais sera exibido
         button1 = tk.Button(self, text="Search", command=lambda: controller.Display(e1.get()))
         button1.pack(pady=20)
         
+        #Botao para voltar para a StartPage
         button2 = tk.Button(self, text="Back", command=lambda:controller.show_frame(StartPage),
                             heigh = 1, width = 10)
         button2.pack(pady=10, padx=10, side=LEFT)
 
+#Frame onde o usuario selecionara qual dado quer listar e de que maneira quer faze-lo (crescente ou decrescente)
 class SelLista(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
@@ -431,6 +465,7 @@ class SelLista(tk.Frame):
                             heigh = 1, width = 10)
         button2.pack(pady=10, padx=10, side=LEFT)
 
+#Frame em que o usuario selecionara dois paises para serem comparados
 class SelCompara(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
