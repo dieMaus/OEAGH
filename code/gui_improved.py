@@ -61,7 +61,7 @@ class App(tk.Tk):
         T.config(yscrollcommand=S.set)
 
         #Para pastas irmas, usar o '../' antes de Btrees
-        bname = open("../Btrees/names.pkl", 'rb')
+        bname = open("../data/Btrees/names.pkl", 'rb')
 
         #Inicializa e desserializa a arvore B
         b = btree.BTree(4)
@@ -71,7 +71,7 @@ class App(tk.Tk):
 
         bname.close()
 
-        binary = open("../Btrees/binaries.kbb", 'rb')
+        binary = open("../data/Btrees/binaries.kbb", 'rb')
         for num in range(0, index):     
             count = pickle.load(binary) #Recebe o pais de indice 'index'
 
@@ -176,7 +176,7 @@ class App(tk.Tk):
         frame = tk.Toplevel(self)
 
         #Adicione '../' antes de Btrees, se esta numa pasta irma
-        bname = open("../Btrees/names.pkl", 'rb')
+        bname = open("../data/Btrees/names.pkl", 'rb')
 
         b = btree.BTree(4)
         b = pickle.load(bname)
@@ -209,7 +209,7 @@ class App(tk.Tk):
         label2.grid(row=0, column=4, sticky="W")
 
         #Adicione '../' antes de Btrees, se esta numa pasta irma
-        binary = open("../Btrees/binaries.kbb", 'rb')
+        binary = open("../data/Btrees/binaries.kbb", 'rb')
         for num in range(0, ind1):          #Busca, com base no indice, o bloco do pais solicitado
             count1 = pickle.load(binary)
 
