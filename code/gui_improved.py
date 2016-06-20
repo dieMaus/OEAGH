@@ -116,21 +116,37 @@ class App(tk.Tk):
         label = tk.Label(frame, text="%s" %(data))
         label.pack()
         S = tk.Scrollbar(frame)
-        T = tk.Text(frame, height=4, width=50)
+        T = tk.Text(frame, height=10, width=50)
         S.pack(pady=2, padx=2, side=RIGHT)
         T.pack(pady=2, padx=2, side=LEFT)
         S.config(command=T.yview)
         T.config(yscrollcommand=S.set)
-        quote="Aqui serao exibidos os dados de maneira"
-        if value == 0:
-            form = "crescent"
-        else:
-            form = "decrescent"
 
-        T.insert(CURRENT, quote + " " + form + "\n")
+        data = unidecode(data)
+        lista = []
+
+        b = btree.BTree(4)
+        nameoffile = "Btrees/" + data + ".pkl"
+
+        if not os.path.exists(nameoffile):
+            T.insert(CURRENT, "There is no such data.\n")
+
+        else:
+            file = open(nameoffile, 'rb')
+            b = pickle.load(file)
+            file.close()
+            
+            #Estamos usando apenas a arvore B, pois teriamos problemas com o Pickle
+            #Teriamos que abrir e fechar o arquivo a cada pesquisa, pois ele eh um serializador
         
-        for num in range(5):
-            T.insert(CURRENT, str(num) + "\n")
+            if value == 0:
+                lista = b.crescent(b._root, lista)
+            else:
+                lista = b.decrescent(b._root, lista)
+            
+            #Mais uma vez, ficou feio :P
+            for obj in lista:
+                T.insert(CURRENT, obj[1] + ' \t\t ' + str(obj[0]) + "\n")
 
     def Compare(self, country1, country2):
         frame = tk.Toplevel(self)
