@@ -492,7 +492,3 @@ class SelCompara(tk.Frame):
         button2 = tk.Button(self, text="Back", command=lambda:controller.show_frame(StartPage),
                             heigh = 1, width = 10)
         button2.grid(column=0, padx=10, pady=10)
-
-app = App()
-app.title("Remove Kebab")
-app.mainloop()
