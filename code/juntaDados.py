@@ -1,9 +1,3 @@
-# olar
-# eu tentei ser o mais correto possivel
-# mas vai que eu esteja errado né, então sinta-se a vontade pra arrumar
-
-# usei o with open... as ... pq vi varios exemplos na internet desse jeito
-
 import os
 import csv
 
@@ -13,13 +7,6 @@ fieldnames = ['name', 'capital', 'largestCity',
               'currency3letter', 'gdp', 'idh', 'gini',
               'lifeExp', 'continent', 'coastArea',
               'govForm', 'currentInflation', 'tourism', 'currency/dolar']
-
-# na minha matriz vai ficar assim
-# ['name', 'capital', 'largestCity','iso3166-a3', 'iso3166-a2', 'internetTLD', 'callingCode','population', 'area', 'currencyName','currency3letter', 'gdp', 'idh', 'gini']
-# ['paraguay','assuncion','etc',...
-#
-# vou alterando os dados incompletos da matriz enquanto leio todos os arquivos csv que eu tenho
-# e no final escrevo essa matriz mestre no arquivo csv final
 
 
 final = open(os.path.abspath('../country_data/fullData.csv'), 'w+', newline='')
