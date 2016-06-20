@@ -7,8 +7,6 @@
 #	concatena com 3ª
 #nomeanterior <= nomeatual
 
-#Soh nao substitui os nomes que eu digitei errado ou que tem acento :/
-#Eu digitei muitos nomes errados
 import os
 import pycountry
 import re
