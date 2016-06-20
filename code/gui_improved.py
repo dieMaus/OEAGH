@@ -149,7 +149,7 @@ class App(tk.Tk):
         
         #Inicializa a arvore B
         b = btree.BTree(4)
-        nameoffile = "Btrees/" + data + ".pkl"
+        nameoffile = "../data/Btrees/" + data + ".pkl"
 
         if not os.path.exists(nameoffile):
             T.insert(CURRENT, "There is no such data.\n")
