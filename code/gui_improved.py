@@ -9,6 +9,7 @@ import pycountry
 import objPais
 import btree
 import pickle
+import os
 
 LARGE_FONT = ("Verdana", 12)
 
