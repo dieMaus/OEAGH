@@ -45,7 +45,7 @@ class App(tk.Tk):
         label = tk.Label(frame, text="%s" %(country))
         label.grid(row=0, column=2)
         S = tk.Scrollbar(frame)
-        T = tk.Text(frame, height=4, width=50)
+        T = tk.Text(frame, height=10, width=50)
         S.grid(pady=2, padx=2, row=2, column=0)
         T.grid(pady=2, padx=2, row=2, column=1, columnspan=3)
         S.config(command=T.yview)
