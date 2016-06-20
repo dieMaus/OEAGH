@@ -1,5 +1,4 @@
 #improved GUI
-#Corrijam meu ingles, senpais.
 
 import tkinter as tk
 from tkinter import END, LEFT, RIGHT, CURRENT
