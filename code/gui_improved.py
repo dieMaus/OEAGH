@@ -39,6 +39,9 @@ class App(tk.Tk):
     def show_frame(self, cont):
         frame = self.frames[cont]
         frame.tkraise()
+        
+    def quit(self):
+        self.destroy()
 
     def Display(self, country):
         frame = tk.Toplevel(self)
@@ -375,6 +378,11 @@ class StartPage(tk.Frame):
                             command=lambda: controller.show_frame(SelCompara),
                             height = 1, width = 10)
         button3.pack(pady=5)
+        
+        button4 = tk.Button(self, text="Quit",
+                            command=lambda: controller.quit(),
+                            height = 1, width=10)
+        button4.pack(pady=10)
 
 class SelExibe(tk.Frame):
     def __init__(self, parent, controller):
@@ -390,6 +398,10 @@ class SelExibe(tk.Frame):
 
         button1 = tk.Button(self, text="Search", command=lambda: controller.Display(e1.get()))
         button1.pack(pady=20)
+        
+        button2 = tk.Button(self, text="Back", command=lambda:controller.show_frame(StartPage),
+                            heigh = 1, width = 10)
+        button2.pack(pady=10, padx=10, side=LEFT)
 
 class SelLista(tk.Frame):
     def __init__(self, parent, controller):
@@ -414,6 +426,10 @@ class SelLista(tk.Frame):
 
         button1 = tk.Button(self, text="Search", command=lambda: controller.List_it(e1.get(), var.get()))
         button1.pack(pady=10)
+        
+        button2 = tk.Button(self, text="Back", command=lambda:controller.show_frame(StartPage),
+                            heigh = 1, width = 10)
+        button2.pack(pady=10, padx=10, side=LEFT)
 
 class SelCompara(tk.Frame):
     def __init__(self, parent, controller):
@@ -435,6 +451,10 @@ class SelCompara(tk.Frame):
         button1 = tk.Button(self, text="Search", command=lambda: controller.Compare(e1.get(), e2.get()),
                             height = 1, width = 10)
         button1.grid(column=1, columnspan=2, pady=20)
+        
+        button2 = tk.Button(self, text="Back", command=lambda:controller.show_frame(StartPage),
+                            heigh = 1, width = 10)
+        button2.grid(column=0, padx=10, pady=10)
 
 app = App()
 app.title("Remove Kebab")
