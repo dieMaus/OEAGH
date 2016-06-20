@@ -169,7 +169,10 @@ class App(tk.Tk):
             
             #For que imprime cada objeto da lista organizada
             for obj in lista:
-                T.insert(CURRENT, obj[1] + ' \t\t ' + str(obj[0]) + "\n")
+                if obj[0] != 0:
+                    T.insert(CURRENT, obj[1] + ' \t\t ' + str(obj[0]) + "\n")
+                else:
+                    T.insert(CURRENT, obj[1] + ' \t\t ' + 'n.a.' + "\n")
 
     #Abre uma nova janela que exibe simultaneamente os dados dos dois paises selecionados anteriormente
     def Compare(self, country1, country2):
