@@ -5,7 +5,8 @@ import operator
 
 class _BNode(object):
     __slots__ = ["tree", "contents", "children"]
-
+    
+    #Cada nodo e formado por duas listas: contents (chaves) e children
     def __init__(self, tree, contents=None, children=None):
         self.tree = tree
         self.contents = contents or []
