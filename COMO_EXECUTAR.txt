@@ -1,0 +1,14 @@
+Para executar o trabalho:
+
+i) Instale Python 3.5
+
+ii) Utilizando o prompt de comando do sistema operacional, instale os seguintes módulos utilizando o comando
+    python -m pip install -U pip modulo
+*TkInter
+*Pickle
+*Wikipedia
+*Pycountry
+
+iii) Navegue para a subpasta code
+
+iv) Execute main.py utilizando Python 3.5
