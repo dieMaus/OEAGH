@@ -3,7 +3,7 @@ Para executar o trabalho:
 i) Instale Python 3.5
 
 ii) Utilizando o prompt de comando do sistema operacional, instale os seguintes módulos utilizando o comando
-    python -m pip install -U pip modulo
+    python -m pip install *modulo
 *TkInter
 *Pickle
 *Wikipedia
